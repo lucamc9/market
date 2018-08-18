@@ -1,0 +1,52 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/side_buttons.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+        	{% include 'snippets/side_buttons.html' %}
+        </div>
+		<div class="col-md-8 col-sm-7">
+			<h1 class="h1 title"> <b>Data Room</b> </h1>
+			<p>Upload all your required documents by accesing their individual pages</p>
+			<div class="list-group">
+				<a href="#" class="list-group-item list-group-item-action active">
+					Environmental & Social Impact
+				</a>
+				<a href="environmental-form" class="list-group-item list-group-item-action">Environmental</a>
+				<a href="#" class="list-group-item list-group-item-action active">
+					Finance & Legal
+				</a>
+				<a href="compliance-form" class="list-group-item list-group-item-action">Compliance</a>
+				<a href="finance-form" class="list-group-item list-group-item-action">Finance</a>
+				<a href="legal-form" class="list-group-item list-group-item-action">Legal</a>
+				<a href="#" class="list-group-item list-group-item-action active">
+					General Company Info
+				</a>
+				<a href="company-form" class="list-group-item list-group-item-action">General Company Info</a>
+				<a href="#" class="list-group-item list-group-item-action active">
+					Leadership
+				</a>
+				<a href="governance-form" class="list-group-item list-group-item-action">Governance</a>
+				<a href="#" class="list-group-item list-group-item-action active">
+					Operations & Procurement
+				</a>
+				<a href="facilities-form" class="list-group-item list-group-item-action">Facilities</a>
+				<a href="technology-form" class="list-group-item list-group-item-action">IT/Technology</a>
+				<a href="processes-form" class="list-group-item list-group-item-action">Processes</a>
+				<a href="procurement-form" class="list-group-item list-group-item-action">Procurement</a>
+				<a href="organisation-form" class="list-group-item list-group-item-action">Organisation</a>
+				<a href="staff-form" class="list-group-item list-group-item-action">Staff</a>
+				<a href="#" class="list-group-item list-group-item-action active">
+					Sales & Marketing
+				</a>
+				<a href="comptetition-form" class="list-group-item list-group-item-action">Competition</a>
+				<a href="marketing-form" class="list-group-item list-group-item-action">Marketing</a>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock content %}

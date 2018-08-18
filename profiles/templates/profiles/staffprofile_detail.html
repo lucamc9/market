@@ -1,0 +1,27 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/profiles.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class="col-xs-2 no-float bar-1">
+            <div class="avatar">
+                <img src="{% static 'logos/logo-white.png' %}" height="80">
+            </div>
+        </div>
+        <div class="col-xs-8 no-float">
+            <h1 class="h1 title"> <b>{{ object.full_name }}</b> </h1>
+            <p>{{ object.role }}</p>
+            <div class="row">
+                <div class="col-xs-6 no-float" style="padding-top: 30px;">
+                    <p><b>Email:</b> {{ object.user }} </p>
+                </div>
+            </div>
+		</div>
+		<div class="col-xs-2 no-float bar-2">
+		</div>
+	</div>
+</main>
+{% endblock content %}

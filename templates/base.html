@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/static/logos/favicon.ico"/>
+    <title>Challenges Marketplace</title>
+    {% include 'snippets/css.html' %}
+    {% block styles %}{% endblock styles %}
+</head>
+<body style="background-color: #3381A8">
+{% include 'snippets/navbar.html' %}
+
+{% block content %}{% endblock content %}
+
+{% include 'snippets/js.html' %}
+</body>
+
+</html>

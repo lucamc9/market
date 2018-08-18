@@ -1,0 +1,16 @@
+{% extends "base_white.html" %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+			{% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-md-8 col-sm-7">
+            <h1 class="h1 title"> <b>{{ smeprofile.get_company_name }}'s Information</b> </h1>
+			<p>Here you'll be able to find all the information we can keep and display for you to engage with investors.</p>
+		</div>
+	</div>
+</main>
+{% endblock content %}

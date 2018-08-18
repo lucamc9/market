@@ -1,0 +1,6 @@
+*.pyc
+*.pyo
+media/
+.idea/
+venv/
+*/__pycache__/

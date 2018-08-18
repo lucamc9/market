@@ -1,0 +1,277 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/follower_kpi.css">{% endblock styles %}
+<script>
+{% block jquery %}
+
+var endpoint = 'api/data';
+$.ajax({
+	method: "GET",
+	url: endpoint,
+	success: function(data) {
+	    idName1 = 'grossandnet';
+        grosslabels = data.gross_labels;
+        grossValues = data.gross;
+        netValues = data.net;
+        idName2 = 'flow';
+        flowLabels = data.flow_labels;
+		revenues = data.revenue;
+		expenditures = data.expenses;
+		cashFlow = data.cash_flow;
+		idName3 = 'sales';
+		salesLabels = data.sales_names;
+		sales = data.sales_concentration;
+		idName4 = 'speedo';
+		salesLabels_speedo = ['Actual', 'Projected - Actual'];
+		sales_speedo = [data.actual_sales, data.forecast_sales - data.actual_sales];
+		barChart(grossValues, netValues, idName1, grosslabels);
+        flowChart(revenues, expenditures, cashFlow, idName2, flowLabels);
+        pieChart(sales, idName3, salesLabels);
+        speedoChart(sales_speedo, idName4, salesLabels_speedo);
+    },
+	error: function(error_data){
+		console.log("error");
+		console.log(error_data)
+	}
+});
+
+function barChart(gross, net, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var grossandnet = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Gross profit margin',
+				data: gross,
+				backgroundColor: 'rgba(54, 162, 235, 0.5)',
+				borderColor: 'rgba(54, 162, 235, 1)',
+				borderWidth: 1
+			},
+			{
+                label: 'Net profit margin',
+                data: net,
+				backgroundColor: 'rgba(255, 159, 64, 0.5)',
+				borderColor: 'rgba(255, 159, 64, 0.5)',
+				borderWidth: 1
+			}]
+		},
+		options: {
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                beginAtZero:true,
+						max: 100,
+						callback: function(value, index, values) {
+                        	return value + '%';
+                    	}
+		            },
+					gridLines: {
+		                display: false
+					}
+		        }],
+				xAxes: [{
+					gridLines: {
+		                display: false
+					}
+		        }]
+		    },
+		    title: {
+		        display: true,
+				text: 'Profit Margins by Year'
+			}
+		}
+	});
+}
+function flowChart(revenues, expenditures, cashFlow, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var flow = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Cash Flow',
+				data: cashFlow,
+                stack: 0,
+				backgroundColor: 'rgba(237, 191, 50)',
+				borderColor: 'rgba(237, 191, 50)',
+				borderWidth: 1
+			},
+			{
+				label: 'Revenues',
+				data: revenues,
+                stack:0,
+				backgroundColor: 'rgba(54, 166, 35, 0.5)',
+				borderColor: 'rgba(54, 166, 35, 0.5)',
+				borderWidth: 1
+			},
+      {
+        label: 'Expenditures',
+        data: expenditures,
+        stack:0,
+				backgroundColor: 'rgba(224, 108, 112)',
+				borderColor: 'rgba(224, 108, 112)',
+				borderWidth: 1
+			},
+            ]
+		},
+		options: {
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                beginAtZero:true
+		            },
+					gridLines: {
+		                display: true
+					},
+					stacked:false
+		        }],
+				xAxes: [{
+					gridLines: {
+		                display: false
+					},
+					stacked:true
+		        }]
+		    },
+		    title: {
+		        display: true,
+				text: 'Cash flow by Month'
+			}
+		}
+	});
+}
+function pieChart(scores, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var pie = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'First Scores',
+				data: scores,
+				backgroundColor: [
+				    'rgba(54, 162, 235, 0.5)',
+					'rgba(54, 166, 35, 0.5)',
+					'rgba(255, 159, 64, 0.5)',
+					'rgba(224, 108, 112)',
+					'rgba(237, 191, 50)',
+                    'rgba(213, 145, 238)'
+					],
+				borderColor: 'rgba(247, 247, 247, 1)',
+				borderWidth: 8
+			}]
+		},
+		options: {
+		    title: {
+		        display: true,
+				text: 'Sales Concentration by Customer by Year'
+			}
+		}
+	});
+}
+function speedoChart(scores, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var speedo = new Chart(ctx, {
+		type: 'doughnut',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Scores',
+				data: scores,
+				backgroundColor: [
+				    'rgba(54, 162, 235, 0.5)',
+					'rgba(54, 166, 35, 0.5)',
+					],
+				borderColor: 'rgba(247, 247, 247, 1)',
+				borderWidth: 8
+			}]
+		},
+		options: {
+		    rotation: -Math.PI,
+		    circumference: Math.PI,
+		    title: {
+		        display: true,
+				text: 'Sales Actual vs Forecast'
+			}
+		}
+	});
+}
+{% endblock %}
+</script>
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+			{% include 'snippets/side_buttons.html' %}
+            {% if kpi %}
+            <p>{{ smeprofile.get_company_name }}'s uploaded documents:</p>
+            <ul>
+                {% for excelfile in kpi %}
+                <li><a href={{ MEDIA_URL }}{{ excelfile.get_template.url }}>{{ excelfile.get_period_verbose }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+		</div>
+		<div class="col-lg-10 col-sm-9">
+			<h1 class="h1 title"> <b>Follower Dashboard</b><small><a href="{% url 'kpi:home' %}" style="margin-left: 5px">Update</a></small></h1>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-sales">Sales</div>
+                        <div class="panel-body">{{ sales }} {{ smeprofile.get_currency }}</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-net">Net Income</div>
+                        <div class="panel-body">{{ net_income }} {{ smeprofile.get_currency }}</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-cash">Cash</div>
+                        <div class="panel-body">{{ cash }} {{ smeprofile.get_currency }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <canvas id="speedo" width="100" height="100"></canvas>
+                </div>
+								<div class="col-sm-4">
+                    <canvas id="grossandnet" width="100" height="100"></canvas>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel-group">
+                          <div class="panel panel-default">
+                          <div class="panel-heading">Accounts Receivable</div>
+                          <div class="panel-body">{{ accounts_receivable }} {{ smeprofile.get_currency }}</div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">Accounts Payable</div>
+                          <div class="panel-body">{{ accounts_payable }} {{ smeprofile.get_currency }}</div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><b>Quick Ratio</b></div>
+                          <div class="panel-body">{{ quick_ratio }} to 1</div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>Current Ratio</b></div>
+                          <div class="panel-body">{{ current_ratio }} to 1</div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <canvas id="sales" width="100" height="100"></canvas>
+                </div>
+								<div class="col-sm-8">
+										<canvas id="flow" width="200" height="100"></canvas>
+                </div>
+            </div>
+		</div>
+	</div>
+</main>
+{% endblock content %}

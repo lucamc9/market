@@ -1,0 +1,60 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/profiles.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class="col-xs-2 no-float bar-1">
+            <div class="avatar">
+                <img src="{% static 'logos/logo-white.png' %}" height="80">
+            </div>
+        </div>
+        <div class="col-xs-8 no-float">
+            <h1 class="h1 title"> <b>{{ object.get_company_name }}</b> </h1>
+            <p>{{ object.get_description }}</p>
+            <div class="row">
+                <div class="col-xs-6 no-float" style="padding-top: 30px;">
+                    <p><b>Email:</b> {{ object.user }} </p>
+                    <p><b>Country:</b> {{ object.get_country_display }}</p>
+                    <p><b>Legal Structure:</b> {{ object.get_legal_structure_display }}</p>
+                </div>
+                <div class="col-xs-6 no-float" style="padding-left: 40px;">
+                    <p><b>Year Founded:</b> {{ object.get_year_founded_display }}</p>
+                    <p><b>Local Currency:</b> {{ object.get_currency_display }} </p>
+                    <p><b>Sector:</b> {{ object.get_sector_display }}</p>
+                    <p><b>Ownership:</b> {{ object.get_ownership_display }}</p>
+                </div>
+            </div>
+            {% if request.user.is_staff %}
+            <div class="row">
+                <div class="col-xs-6 no-float">
+                    <p>Have a look at my <a href="{% url 'info' slug=object.slug %}">information</a></p>
+                    <p>I'm currently lacking:</p>
+                    <ul>
+                        {% if not kpi %}
+                        <li><a href="{% url 'kpi:home' %}">KPI</a></li>
+                        {% endif %}
+                        {% if not bp %}
+                        <li><a href="{% url 'businessplan:create' %}">Business Plan</a></li>
+                        {% endif %}
+                        {% if not diag %}
+                        <li><a href="{% url 'diagnostics:create' %}">Diagnostics</a></li>
+                        {% endif %}
+                        {% if not diligence %}
+                        <li><a href="{% url 'diligence:create' %}">Due Diligence</a></li>
+                        {% endif %}
+                        {% if not accordion %}
+                        <li><a href="{% url 'accordion:redirect' %}">Data Room</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+		</div>
+		<div class="col-xs-2 no-float bar-2">
+		</div>
+	</div>
+</main>
+{% endblock content %}

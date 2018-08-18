@@ -1,0 +1,21 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/businessplan_detail.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+            {% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-md-8 col-sm-7">
+			<h1 class="h1 title"> <b>Due Diligence</b> <small><a href="{% url 'diligence:update' slug=object.slug %}">Update</a></small></h1>
+            {% for question, label in diligence.get_detail_questions %}
+                <p class="question">{{ label }}</p>
+                <p class="response">{{ question }}</p>
+            {% endfor %}
+		</div>
+	</div>
+</main>
+{% endblock content %}

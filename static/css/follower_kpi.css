@@ -1,0 +1,17 @@
+.panel > .panel-heading-sales {
+    background-image: none;
+    background-color: #E06C70;
+    color: white;
+}
+
+.panel > .panel-heading-net {
+    background-image: none;
+    background-color: #EB964B;
+    color: white;
+}
+
+.panel > .panel-heading-cash {
+    background-image: none;
+    background-color: #6CCF69;
+    color: white;
+}

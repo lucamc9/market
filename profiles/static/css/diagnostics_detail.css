@@ -1,0 +1,14 @@
+/** Super hacky way, fix!
+*/
+.progress-diag {
+  margin-bottom: 49.5px;
+}
+
+.progress-bar-diag {
+    background-image: none;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 50px;
+}

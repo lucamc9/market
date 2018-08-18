@@ -1,0 +1,84 @@
+<div class="nav-buttons" style="margin-top:80px;">
+    {% if kpi is not None %}
+        <form action="{% url 'kpi:detail-follower' slug=kpi.first.slug %}">
+            <button class="button standard" type="submit">Follower Dashboard</button>
+        </form>
+        <div class="progress progress-buttons" style="margin-top:-55px; margin-bottom: 40px;">
+            <div class="progress-bar progress-bar-buttons" role="progressbar" aria-valuenow="50"
+                 aria-valuemin="0" aria-valuemax="100" style="width:100%; background-image: none; background-color: #B0AFAF;">
+            </div>
+        </div>
+        <form action="{% url 'kpi:detail-business' slug=kpi.first.slug %}">
+            <button class="button standard" type="submit">Business Dashboard</button>
+        </form>
+        <div class="progress progress-buttons" style="margin-top:-55px; margin-bottom: 40px;">
+            <div class="progress-bar progress-bar-buttons" role="progressbar" aria-valuenow="50"
+                 aria-valuemin="0" aria-valuemax="100" style="width:100%; background-image: none; background-color: #B0AFAF;">
+            </div>
+        </div>
+    {% else %}
+        <form action="/kpi/">
+            <button class="button standard" style="color: #B0AFAF;" type="submit">Follower Dashboard</button>
+        </form>
+        <form action="/kpi/">
+            <button class="button standard" style="color: #B0AFAF;" type="submit">Business Dashboard</button>
+        </form>
+    {% endif %}
+    {% if bp is not None %}
+        <form action="{{ bp.get_absolute_url }}">
+            <button class="button standard" type="submit">Business Plan</button>
+        </form>
+    <div class="progress progress-buttons" style="margin-top:-55px; margin-bottom: 40px;">
+        <div class="progress-bar progress-bar-buttons" role="progressbar" aria-valuenow="50"
+             aria-valuemin="0" aria-valuemax="100" style="width:100%; background-image: none; background-color: #B0AFAF;">
+        </div>
+      </div>
+    {% else %}
+        <form action="/businessplan/">
+            <button class="button standard" style="color: #B0AFAF;" type="submit">Business Plan</button>
+        </form>
+    {% endif %}
+    {% if diag is not None %}
+        <form action="{{ diag.get_absolute_url }}">
+            <button class="button standard" type="submit">Diagnostics</button>
+        </form>
+    <div class="progress progress-buttons" style="margin-top:-55px; margin-bottom: 40px;">
+        <div class="progress-bar progress-bar-buttons" role="progressbar" aria-valuenow="50"
+             aria-valuemin="0" aria-valuemax="100" style="width:100%; background-image: none; background-color: #B0AFAF;">
+        </div>
+      </div>
+    {% else %}
+        <form action="/diagnostics/">
+            <button class="button standard" style="color: #B0AFAF;" type="submit">Diagnostics</button>
+        </form>
+    {% endif %}
+    {% if diligence is not None %}
+        <form action="{{ diligence.get_absolute_url }}">
+            <button class="button standard" type="submit">Due Diligence</button>
+        </form>
+    <div class="progress progress-buttons" style="margin-top:-55px; margin-bottom: 40px;">
+        <div class="progress-bar progress-bar-buttons" role="progressbar" aria-valuenow="50"
+             aria-valuemin="0" aria-valuemax="100" style="width:100%; background-image: none; background-color: #B0AFAF;">
+        </div>
+      </div>
+    {% else %}
+        <form action="/diligenceroom/">
+            <button class="button standard" style="color: #B0AFAF;" type="submit">Due Diligence</button>
+        </form>
+    {% endif %}
+    {% if accordion is not None %}
+        <form action="{{ accordion.get_absolute_url }}">
+            <button class="button standard" type="submit">Data Room</button>
+        </form>
+    <div class="progress progress-buttons" style="margin-top:-55px; margin-bottom: 40px;">
+        <div class="progress-bar progress-bar-buttons" role="progressbar" aria-valuenow="50"
+             aria-valuemin="0" aria-valuemax="100" style="width:40%; background-image: none; background-color: #B0AFAF;">
+        </div>
+      </div>
+    {% else %}
+        <form action="/dataroom/">
+            <button class="button standard" style="color: #B0AFAF;" type="submit">Data Room</button>
+        </form>
+    {% endif %}
+    <button class="button standard" style="color: #B0AFAF;">Bespoke Questionnaire</button>
+</div>

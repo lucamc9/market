@@ -1,0 +1,56 @@
+{% load static %}
+{% block styles %} <link rel="stylesheet" type="text/css" href="/static/css/navbar_white.css"> {% endblock styles%}
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid nav-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+	  		</button>
+			<a href="#" class="navbar-brand">
+				<img src="{% static 'logos/logo.png' %}" height="30" class="pull-left">
+			</a>
+			<span class="name pull-left">CHALLENGES MARKETPLACE</span>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-nav-demo">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search..." name="query" value="{{ request.GET.query }}">
+				</div>
+			</form>
+			<ul class="nav navbar-nav">
+				{% if user.is_staff %}
+					<li><a href="/search-companies/" id="nav-names">SMEs</a></li>
+                    {% if smeprofile %}
+                        <li><a href="{% url 'info' slug=smeprofile.slug %}" id="nav-names">{{ smeprofile.get_company_name }}'s Info</a></li>
+                    {% endif %}
+				{% elif user.is_sme and smeprofile %}
+					<li><a href="{% url 'info' slug=smeprofile.slug %}" id="nav-names">My Info</a></li>
+				{% endif %}
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<!--<img src="{% static 'logos/logo-white.png' %}" height="30" class="pull-left">-->
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+                            {% if user.is_staff %}
+								<a href="{{ staffprofile.get_absolute_url }}">Profile</a>
+							{% elif user.is_sme %}
+								<a href="{{ smeprofile.get_absolute_url }}">Profile</a>
+							{% else %}
+								<a href="/profile/sme/create">Profile</a>
+							{% endif %}
+						</li>
+						<li role="separator" class="divider"></li>
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+					</ul>
+				</li>
+	 		 </ul>
+		</div>
+	</div>
+</nav>

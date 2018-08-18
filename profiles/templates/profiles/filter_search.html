@@ -1,0 +1,56 @@
+{% load countries %}
+<form class="filter-queries" style="margin-left: 10px;">
+    <h2 style="font-size: 25px;">Filter by</h2>
+    <div class="form-group">
+        <label for="struct">Legal Structure</label>
+        <div class="legal-radio" id="struct">
+        {% for legal_choice in legal_choices %}
+            <div class="radio">
+                <label><input type="radio" name="legal" value="{{ legal_choice.0 }}">{{ legal_choice.1 }}</label>
+            </div>
+        {% endfor %}
+        </div>
+        <label for="own">Ownership</label>
+        <div class="own-radio" id="own">
+        {% for owner in ownership %}
+            <div class="radio">
+                <label><input type="radio" name="owner" value="{{ owner.0 }}">{{ owner.1 }}</label>
+            </div>
+        {% endfor %}
+        </div>
+        <label for="curr">Currency</label>
+        <select class="form-control" id="curr" name="currency">
+                <option value="" selected disabled>Select currency...</option>
+            {% for currency in currencies %}
+                <option value="{{ currency.0 }}">{{ currency.1 }}</option>
+            {% endfor %}
+        </select>
+        <label for="sect">Sector</label>
+        <select class="form-control" id="sect" name="sector">
+                <option value="" selected disabled>Select sector...</option>
+            {% for sector_group in sectors %}
+                <optgroup label="{{ sector_group.0 }}">
+                    {% for sector in sector_group.1 %}
+                        <option value="{{ sector.0 }}">{{ sector.1 }}</option>
+                    {% endfor %}
+                </optgroup>
+            {% endfor %}
+        </select>
+        <label for="yer">Year founded</label>
+        <select class="form-control" id="yer" name="year">
+                <option value="" selected disabled>Select year...</option>
+            {% for year in years %}
+                <option value="{{ year.0 }}">{{ year.1 }}</option>
+            {% endfor %}
+        </select>
+        {% get_countries as countries %}
+        <label for="count">Country</label>
+        <select class="form-control" id="count" name="country">
+                <option value="" selected disabled>Select country...</option>
+            {% for country in countries %}
+                <option value="{{ country.name }}">{{ country.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+     <button type="submit" class="btn btn-primary">Filter</button>
+</form>

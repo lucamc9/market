@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static '/static/logos/favicon.ico' %}"/>
+    <title>Challenges Marketplace</title>
+    {% include 'snippets/css.html' %}
+    {% block styles %}{% endblock styles %}
+</head>
+<body style="background-color: #F7F7F7">
+{% include 'snippets/navbar.html' %}
+
+{% block content %}
+<div class="col-xs-offset-4 col-xs-4">
+    <h1>You will now receive an email containing the activation link.</h1>
+</div>
+{% endblock content %}
+
+{% include 'snippets/js.html' %}
+</body>
+
+</html>

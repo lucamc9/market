@@ -1,0 +1,88 @@
+,Where,Area,Sub-Area,Question
+0,Data Room,Environmental & Social Impact,Environmental,"Confirmation of all environmental permits or licenses need to run the business from the premises, and evidence of their existence"
+6,Data Room,Finance & Legal,Compliance,Confirmation and evidence of compliance with all government and industry standards and requirements that are required to trade
+7,Data Room,Finance & Legal,Compliance,Confirmation that the Company has not entered into any arrangement whereby the purpose is the avoidance of tax
+8,Data Room,Finance & Legal,Compliance,Confirmations that all tax payments are up to date and details of the responsible person within the Company dealing with tax issues
+9,Data Room,Finance & Legal,Compliance,"Details of all consents, licenses, registrations and approvals needed for the Company to carry out the business within the various territories and anticipated territories, and in respect of all services to be provided / products to be sold / produced"
+10,Data Room,Finance & Legal,Compliance,"Details of all regulatory / compliance regimes that the Company is subject to by virtue of its business, trade or territory"
+11,Data Room,Finance & Legal,Compliance,"Details of H&S policies, procedures and compliance with all requirements, including governmental"
+12,Data Room,Finance & Legal,Compliance,Documentation on the certification or regulation of the product or service
+22,Data Room,Finance & Legal,Finance,Agreements that represent in excess of 5% of six month’s turnover
+23,Data Room,Finance & Legal,Finance,Confirmation of the Company’s accountant and auditor
+24,Data Room,Finance & Legal,Finance,"Copies of all financial records that record or analyse financial performance of the Company – monthly accounts, annual accounts/cash flow statements etc"
+25,Data Room,Finance & Legal,Finance,"Copies of plans and projections and budgets, and an analysis of whether these have been met"
+26,Data Room,Finance & Legal,Finance,Details of capital commitments above £20k.
+27,Data Room,Finance & Legal,Finance,"Details of charges, mortgages, hire purchases, leases, etc"
+28,Data Room,Finance & Legal,Finance,Details of credit arrangements with customers
+29,Data Room,Finance & Legal,Finance,"Details of financial commitments, current debtors and current creditors"
+30,Data Room,Finance & Legal,Finance,Details of loans or grants or borrowings
+31,Data Room,Finance & Legal,Finance,Details of tax returns and computations and evidence of payment
+32,Data Room,Finance & Legal,Finance,Details of the Company’s bank and relevant statements
+33,Data Room,Finance & Legal,Finance,List and valuations of all assets of the Company
+34,Data Room,Finance & Legal,Finance,Stock details and valuation (including obsolete stock) and explanation of whether level is appropriate to meet needs of business
+35,Data Room,Finance & Legal,Finance,A list of assets used in the business that the Company does not own (leased or borrowed) and their respective importance to the business
+58,Data Room,Finance & Legal,Legal,Confirmation of third party and public liability insurance
+59,Data Room,Finance & Legal,Legal,Confirmations that there is adequate insurance to replace all Company assets at market price
+60,Data Room,Finance & Legal,Legal,Details of all claims in the last 6 years
+61,Data Room,Finance & Legal,Legal,Details of all insurances
+62,Data Room,Finance & Legal,Legal,Does the Company insurance provide necessary cover for this location?
+63,Data Room,Finance & Legal,Legal,Has adequate insurance been provided?  What does this cover?  Is this the market norm?
+64,Data Room,Finance & Legal,Legal,Provide details of any insurance refusal in the last 5 years
+65,Data Room,Finance & Legal,Legal,Can the technology be protected by IP rights?
+66,Data Room,Finance & Legal,Legal,"Do the current patent applications cover all necessary commercial applications of the technology / device?  Has this been confirmed by a patent attorney? If so, please provide details."
+67,Data Room,Finance & Legal,Legal,Does the Company foresee having to acquire any further IP to complete the project as anticipated by the BP?
+68,Data Room,Finance & Legal,Legal,"Does the Company own all of intellectual property (‘IP’) necessary to carry out the business, trade and developments as described in the business plan?"
+69,Data Room,Finance & Legal,Legal,List all IP etc. used within the business that is not owned by the Company
+70,Data Room,Finance & Legal,Legal,"List all IP, know-how, copy rights, trade-marks and the like owned by the Company"
+71,Data Room,Finance & Legal,Legal,Please provide a breakdown of IP costs for the next 18 months.  Have all costs (including defence and licence costs) been included in the BP financial projections?
+72,Data Room,Finance & Legal,Legal,Please provide full details and status of all patents and patent applications that the Company owns or will own?
+73,Data Room,Finance & Legal,Legal,Provide a copy of the latest IP audit
+74,Data Room,Finance & Legal,Legal,Provide details of any IP disputes
+75,Data Room,Finance & Legal,Legal,Background research carried out as to freedom to operate
+76,Data Room,Finance & Legal,Legal,Details of costs are associated with maintaining the IP
+77,Data Room,Finance & Legal,Legal,Details of further developments anticipated with regards to the IP
+78,Data Room,Finance & Legal,Legal,"Details of all current litigation, arbitration or disputes involving the Company (including employment disputes) and any anticipated litigation or dispute or judgements"
+79,Data Room,Finance & Legal,Legal,Standard terms and conditions of sale / provision
+80,Data Room,Finance & Legal,Legal,Details of any agreements entered into by the Company that restrict competition or affect pricing of their service/product.
+81,Data Room,Finance & Legal,Legal,Agreements likely to result in a loss to the Company
+82,Data Room,Finance & Legal,Legal,Agreements or arrangements to which directors or employees or shareholders are party
+83,Data Room,Finance & Legal,Legal,Agreements that are material to the business of the Company
+84,Data Room,Finance & Legal,Legal,Agreements that restrict the operation of the Company
+85,Data Room,Finance & Legal,Legal,Agreements that the termination if which results in penalties against the Company
+86,Data Room,Finance & Legal,Legal,Contracts that have more than 6 months to run
+87,Data Room,Finance & Legal,Legal,Current major negotiations
+88,Data Room,Finance & Legal,Legal,SWOT analysis
+104,Data Room,General Company Info,General Company Info,Articles of association
+105,Data Room,General Company Info,General Company Info,Board minutes
+106,Data Room,General Company Info,General Company Info,"Date of incorporation, registered number and address with documentation"
+107,Data Room,General Company Info,General Company Info,"Details of share options, warrants and the like"
+108,Data Room,General Company Info,General Company Info,Details of transfers other than at arm’s length
+109,Data Room,General Company Info,General Company Info,Full name and any changes of name
+110,Data Room,General Company Info,General Company Info,Holdings of the Company in other entities
+111,Data Room,General Company Info,General Company Info,Loans by the Company to staff or directors or interested parties /entities
+112,Data Room,General Company Info,General Company Info,Share capital table with rights and ownerships
+113,Data Room,General Company Info,General Company Info,Statutory registers
+114,Data Room,General Company Info,General Company Info,Trading names
+115,Data Room,Leadership,Governance,List of board members
+137,Data Room,Operations & Procurement,Facilities,Evidence of appropriate insurances in respect of the property
+138,Data Room,Operations & Procurement,Facilities,"Details of lease arrangements, terms and evidence of payment of rent"
+139,Data Room,Operations & Procurement,Facilities,Evidence of all permits and permissions needed to use the premises for the business run by the Company
+140,Data Room,Operations & Procurement,Facilities,"Evidence of ownership of business premises, or leasing"
+147,Data Room,Operations & Procurement,IT/Technology,"Details of all computer hardware, databases, software and networks owned or used by the Company together with documentation"
+148,Data Room,Operations & Procurement,IT/Technology,"Details of domain names, web-sites and the like created for and used by the Company"
+149,Data Room,Operations & Procurement,IT/Technology,Details of recurring technical problems
+150,Data Room,Operations & Procurement,IT/Technology,Details of security and back-up processes
+151,Data Room,Operations & Procurement,IT/Technology,Details of source codes and the like developed for the Company by third parties and details of the ownership of these
+168,Data Room,Operations & Procurement,Processes,Standard operating procedures
+184,Data Room,Operations & Procurement,Procurement,Procurement policy(ies)
+195,Data Room,Organisation & Staff,Organisation,"Vision, mission and purpose documentation"
+196,Data Room,Organisation & Staff,Organisation,Organisational SMART objectives
+215,Data Room,Organisation & Staff,Staff,Provide a list of employees and their duties
+216,Data Room,Organisation & Staff,Staff,Provide all employment contracts / agreements
+217,Data Room,Organisation & Staff,Staff,Full organisation chart
+218,Data Room,Organisation & Staff,Staff,Performance management process documentation
+238,Data Room,Sales & Marketing,Competition,A report on the competition and the Company’s competitive advantage
+240,Data Room,Sales & Marketing,Competition,Market research/competitor analysis documentation
+241,Data Room,Sales & Marketing,Competition,PESTLE analysis
+269,Data Room,Sales & Marketing,Marketing,Key marketing documentation
+270,Data Room,Sales & Marketing,Marketing,A list of major customers

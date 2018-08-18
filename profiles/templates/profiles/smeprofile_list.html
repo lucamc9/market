@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+
+<ul>
+{% for obj in object_list %}
+    <li><a href='{{ obj.get_absolute_url }}'>{{ obj.user }}</a><br/>
+            <p><b>Email:</b> {{obj.user }} </p>
+
+            <p><b>Linked-In URL:</b> {{ obj.get_lkin_urls }}</p>
+
+            <p><b>Country:</b> {{ obj.get_country }} </p>
+
+            <p><b>Legal Structure:</b> {{ obj.get_legal_struct }}</p>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+</div>
+
+{% endblock %}

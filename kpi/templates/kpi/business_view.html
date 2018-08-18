@@ -1,0 +1,297 @@
+{% extends "base_white.html" %}
+{% load static %}
+
+<script>
+{% block jquery %}
+
+var endpoint = 'data';
+var labels = [];
+$.ajax({
+	method: "GET",
+	url: endpoint,
+	success: function(data) {
+	    idName1 = 'doughnut';
+        idName2 = 'improvement';
+        diagLabels = ['Environmental', 'Leadership', 'Financial Management',
+			'Product/Services', 'Organization', 'Sales & Marketing'];
+        doughnutLabels = ['Cost of Goods Sold', 'Payroll Costs', 'Sales, General & Administrative',
+			'Taxes', 'Other', 'Interest', 'Rent/Leases'];
+        expenses = [520, 120, 62, 10, 25, 14, 75];
+        scores = [10, 20, 30, 40, 50, 60];
+		improvedScores = [30, 40, 50, 60, 70, 80];
+		idName4 = 'sales';
+		sales = [75000, 60000, 100000];
+		salesLabels = ['Deborah', 'Danny', 'Eoghan'];
+		idName3 = 'product-a';
+		productLabels = ['January', 'February', 'March', 'April'];
+		idName5 = 'product-b';
+		idName6 = 'stock';
+		idName7 = 'cash';
+        polarChart(scores, improvedScores, idName2, diagLabels);
+        pieChart(sales, idName4, salesLabels);
+        doughnutChart(expenses, idName1, doughnutLabels);
+        productChart([10, 20, 85, 85], [-5, 55, 40, 60], idName3, productLabels, 'Product A');
+        productChart([-5, 20, 40, 60], [10, 10, 85, 85], idName5, productLabels, 'Product B');
+		stockChart([6, 4, 4, 4], [0.9, 1, 1.4, 1.2], idName6, productLabels);
+		cashChart([800, 1000, 800, 600], [50, 200, 200, 200], [50, 150, 150, 150], idName7, productLabels)
+    },
+	error: function(error_data){
+		console.log("error");
+		console.log(error_data)
+	}
+});
+
+function polarChart(scores, improvedScores, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var polar = new Chart(ctx, {
+		type: 'polarArea',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'First Scores',
+				data: scores,
+				backgroundColor: 'rgba(54, 162, 235, 0.2)',
+				borderColor: 'rgba(54, 162, 235, 1)',
+				borderWidth: 1
+			},
+			{
+                label: 'Current Scores',
+                data: improvedScores,
+				backgroundColor: 'rgba(255, 159, 64, 0.2)',
+				borderColor: 'rgba(255, 159, 64, 1)',
+				borderWidth: 1
+			}]
+		},
+		options: {
+		    title: {
+		        display: true,
+				text: 'Business Diagnostics'
+			}
+		}
+	});
+}
+
+function pieChart(scores, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var pie = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'First Scores',
+				data: scores,
+				backgroundColor: [
+				    'rgba(54, 162, 235, 0.5)',
+					'rgba(54, 166, 35, 0.5)',
+					'rgba(255, 159, 64, 0.5)'
+					],
+				borderColor: 'rgba(247, 247, 247, 1)',
+				borderWidth: 8
+			}]
+		},
+		options: {
+		    title: {
+		        display: true,
+				text: 'Sales Concentration by Customer'
+			}
+		}
+	});
+}
+
+function doughnutChart(scores, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var pie = new Chart(ctx, {
+		type: 'doughnut',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'First Scores',
+				data: scores,
+				backgroundColor: [
+				    'rgba(54, 162, 235, 0.5)',
+					'rgba(54, 166, 35, 0.5)',
+					'rgba(255, 159, 64, 0.5)',
+					'rgba(224, 108, 112)',
+					'rgba(237, 191, 50)',
+					'rgba(144, 153, 148)',
+					'rgba(213, 145, 238)'
+					],
+				borderColor: 'rgba(247, 247, 247, 1)',
+				borderWidth: 8
+			}]
+		},
+		options: {
+		    title: {
+		        display: true,
+				text: 'Expenses - Last Month'
+			}
+		}
+	});
+}
+
+function productChart(orders, unfilled, idName, labels, title){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var line = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'New Orders',
+				data: orders,
+				fill: false,
+				borderColor: [
+				    'rgba(54, 162, 235, 0.5)'
+					]
+			},
+			{
+				label: 'Ending Inventory/Unfilled Orders',
+				data: unfilled,
+				fill: false,
+				borderColor: [
+					'rgba(255, 159, 64, 0.5)'
+					]
+			}]
+		},
+		options: {
+		    title: {
+		        display: true,
+				text: title
+			}
+		}
+	});
+}
+
+function stockChart(inventory, payable, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var line = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Inventory Turns',
+				data: inventory,
+				fill: false,
+				borderColor: [
+				    'rgba(54, 162, 235, 0.5)'
+					]
+			},
+			{
+				label: 'Account Payable Turnover Ratio',
+				data: payable,
+				fill: false,
+				borderColor: [
+					'rgba(255, 159, 64, 0.5)'
+					]
+			}]
+		},
+		options: {
+		    scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + '.00x';
+                        }
+                    }
+                }]
+            },
+		    title: {
+		        display: true,
+				text: 'Stock Turns and Accounts Payable Turns'
+			}
+		}
+	});
+}
+
+function cashChart(cash, receivable, payable, idName, labels){
+    var ctx = document.getElementById(idName).getContext('2d');
+	var line = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Cash in Bank',
+				data: cash,
+				fill: false,
+				borderColor: [
+				    'rgba(54, 162, 235, 0.5)'
+					]
+			},
+			{
+				label: 'Accounts Receivable',
+				data: receivable,
+				fill: false,
+				borderColor: [
+					'rgba(255, 159, 64, 0.5)'
+					]
+			},
+			{
+				label: 'Accounts Payable',
+				data: payable,
+				fill: false,
+				borderColor: [
+					'rgba(54, 166, 35, 0.5)'
+					]
+			}]
+		},
+		options: {
+		    scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + '$';
+                        }
+                    }
+                }]
+            },
+			title: {
+				display: true,
+				text: 'Cash and Receivables'
+			}
+		}
+	});
+}
+
+{% endblock %}
+</script>
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+			{% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-lg-10 col-sm-9">
+			<h1 class="h1 title"> <b>Business Dashboard</b> </h1>
+			<div class="row">
+				<div class="col-sm-4">
+					<canvas id="sales" width="100" height="100"></canvas>
+				</div>
+				<div class="col-sm-4">
+					<canvas id="improvement" width="100" height="100"></canvas>
+				</div>
+				<div class="col-sm-4">
+					<canvas id="doughnut" width="100" height="100"></canvas>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<canvas id="product-a" width="100" height="100"></canvas>
+				</div>
+				<div class="col-sm-4">
+					<canvas id="product-b" width="100" height="100"></canvas>
+				</div>
+				<div class="col-sm-4">
+					<canvas id="stock" width="100" height="100"></canvas>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<canvas id="cash" width="100" height="100"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock content %}

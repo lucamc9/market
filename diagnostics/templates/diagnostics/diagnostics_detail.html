@@ -1,0 +1,66 @@
+{% extends "base_white.html" %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/diagnostics_detail.css">{% endblock styles %}
+
+{% block content %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+            {% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-md-10 col-sm-7" id="bp">
+			<h1 class="h1 title"> <b>Diagnostics</b> <small><a href="{% url 'diagnostics:create' %}">Update</a></small></h1>
+			<div class="col-lg-2 col-sm-3 col-xs-4">
+				<p>Environmental</p>
+				<p>Finance</p>
+				<p>Leadership</p>
+				<p>Operations</p>
+				<p>Organisation</p>
+				<p>Sales</p>
+				<p>Total</p>
+			</div>
+			<div class="col-lg-8 col-sm-6 col-xs-4">
+				{% for percent in diag.get_all_percents %}
+                <div class="progress progress-diag">
+					{% if percent < 34 %}
+                        <div class="progress-bar progress-bar-diag" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                             aria-valuemax="100" style="width: {{ percent }}%; background-image: none; background-color: #E06C70;">
+                            {{ percent }}%
+                        </div>
+                    {% elif percent < 67 %}
+                        <div class="progress-bar progress-bar-diag" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                             aria-valuemax="100" style="width: {{ percent }}%; background-image: none; background-color: #EB964B;">
+                            {{ percent }}%
+                        </div>
+                    {% else %}
+                        <div class="progress-bar progress-bar-diag" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                             aria-valuemax="100" style="width: {{ percent }}%; background-image: none; background-color: #6CCF69;">
+                            {{ percent }}%
+                        </div>
+                    {% endif %}
+				</div>
+                {% endfor %}
+			</div>
+			{% if diag.there_is_improvement %}
+				<div class="col-lg-1 col-sm-3 col-xs-4">
+					{% for improvement in diag.get_improvements_previous %}
+						{% if improvement.is_positive %}
+								<p style="color:#6CCF69;">+{{ improvement.get_value }}%</p>
+						{% else %}
+								<p style="color:#E06C70;">-{{ improvement.get_value }}%</p>
+						{% endif%}
+					{% endfor %}
+				</div>
+				<div class="col-lg-1 col-sm-3 col-xs-4">
+					{% for improvement in diag.get_improvements_first %}
+						{% if improvement.is_positive %}
+								<p style="color:#6CCF69;">+{{ improvement.get_value }}%</p>
+						{% else %}
+								<p style="color:#E06C70;">-{{ improvement.get_value }}%</p>
+						{% endif%}
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/accordion_detail.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+        	{% include 'snippets/side_buttons.html' %}
+        </div>
+		<div class="col-md-8 col-sm-7">
+			<h1 class="h1 title"> <b>Data Room</b> <small><a href="/dataroom/">Update</a></small></h1></h1>
+			<div class="panel-group" id="accordion">
+				{% for accordion in accordions %}
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							{% if accordion.has_questions %}
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{accordion.get_collapse}}">{{ accordion.get_area }}</a>
+							{% else %}
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{accordion.get_collapse}}">{{ accordion.get_area }}</a>
+							{% endif %}
+						</h4>
+					</div>
+					<div id="collapse{{accordion.get_collapse}}" class="panel-collapse collapse">
+						<ul class="list-group">
+							{% for sub_area in accordion.get_sub_areas %}
+							<li class="list-group-item">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											{% if sub_area.has_questions %}
+												<a class="accordion-toggle" data-toggle="collapse" href="#collapse{{ sub_area.get_collapse }}">{{ sub_area.get_sub_area}}</a>
+											{% else %}
+												<a data-toggle="collapse" href="#collapse{{ sub_area.get_collapse }}">{{ sub_area.get_sub_area}}</a>
+											{% endif %}
+										</h4>
+									</div>
+									<div id="collapse{{sub_area.get_collapse}}" class="panel-collapse collapse">
+										<ul class="list-group">
+											{% for question in sub_area.get_questions %}
+											<li class="list-group-item">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" href="#collapse{{ question.get_collapse }}">{{ question.get_question}}</a>
+														</h4>
+													</div>
+													<div id="collapse{{ question.get_collapse }}" class="panel-collapse collapse">
+														<ul class="list-group">
+															{% for file in question.get_files %}
+															<li class="list-group-item"><a href="{{ MEDIA_URL }}{{ file.url }}"> {{file}} </a></li>
+															{% endfor %}
+														</ul>
+													</div>
+												</div>
+											</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock content %}

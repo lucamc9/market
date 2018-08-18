@@ -1,0 +1,59 @@
+{% extends "base_white.html" %}
+
+{% block content %}
+{% load static %}
+{% if form.errors.non_field_errors %}
+{{ form.errors.non_field_errors }}
+{% endif %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+            {% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-md-8 col-sm-7">
+			<h1 class="h1 title"> <b>Business Plan</b> </h1>
+            {% load widget_tweaks %}
+
+            <form method="post" enctype='multipart/form-data' novalidate>
+              {% csrf_token %}
+
+              {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.non_field_errors %}
+                    {{ error }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              {% for field in form.visible_fields %}
+                <div class="form-group">
+                  {{ field.label_tag }}
+
+                  {% if form.is_bound %}
+                    {% if field.errors %}
+                      {% render_field field class="form-control is-invalid" %}
+                      {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      {% render_field field class="form-control is-valid" %}
+                    {% endif %}
+                  {% elif "Upload your business plan" in field.label_tag  %}
+                    {% render_field field class="form-control-file" %}
+                  {% else %}
+                    {% render_field field class="form-control" %}
+                  {% endif %}
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+		</div>
+	</div>
+</main>
+{% endblock content %}

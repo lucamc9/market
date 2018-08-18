@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/login.css">{% endblock styles %}
+
+{% block content %}
+<div style="text-align: center; padding-top: 15px; padding-right: 80px;">
+    <h1 class="welcome-sign">Welcome Back!</h1>
+</div>
+<main role="main" class="container" style="padding-top: 15px;">
+    {% load static %}
+	<div class="container">
+    	<div class="row">
+        	<div id="loginform" class="col-md-offset-4 col-md-3">
+        		<div style="text-align: center" class="logo-wrapper">
+        			<img src="{% static 'logos/logo.png' %}" height="35" class="login-logo">
+        		</div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit" />
+            </form>
+        	</div>
+    	</div>
+	</div>
+</main>
+{% endblock content %}

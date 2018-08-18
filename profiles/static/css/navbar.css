@@ -1,0 +1,22 @@
+.navbar {
+	background: #565656;
+}
+
+.navbar-brand {
+	padding-top:10px;
+}
+
+.name {
+  font-size: 12px;
+  color: white;
+  padding-top: 18px;
+}
+
+.nav-fluid {
+	padding: 5px 0 5px 15px;
+}
+
+#nav-names {
+	color: white;
+}
+

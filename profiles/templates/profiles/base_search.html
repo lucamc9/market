@@ -1,0 +1,38 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/profile_list.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class='col-sm-3'>
+            {% include "profiles/filter_search.html" %}
+        </div>
+        {% if smes %}
+        <div class='col-sm-6'>
+            <div class='list-group'>
+                {% for sme in smes %}
+                <div class="list-group-item clearfix">
+                    <div class="profile-teaser-left">
+                        <div class="profile-img"><img src="{% static 'logos/logo-white.png' %}"></div>
+                    </div>
+                    <div class="profile-teaser-main">
+                        <h4 class="company-name"><a href="{% url 'profiles:detail-sme' slug=sme.slug %}">{{ sme.company_name }}</a></h4>
+                        <p>{{ sme.country }} | {{ sme.year_founded }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+            <div class='col-sm-6'>
+                <p class='lead'>No SMEs found...</p>
+            </div>
+        {% endif %}
+        <div class='col-sm-offset-1 col-sm-2'>
+            <p>Create <a href="{% url 'profiles:create-sme' %}">one</a>.</p>
+        </div>
+    </div>
+</main>
+{% endblock %}

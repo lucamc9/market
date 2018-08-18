@@ -1,0 +1,67 @@
+{% extends "base_white.html" %}
+
+{% block content %}
+{% load static %}
+{% if form.errors.non_field_errors %}
+{{ form.errors.non_field_errors }}
+{% endif %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+			{% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-lg-8 col-sm-7">
+			<h1 class="h1 title"> <b>KPI</b> </h1>
+			<p>Here is where you will be able to provide us with key metrics to calculate your KPIs.
+                To do so download the <a href="/static/template_kpi/Yearly-input-template.xlsx">yearly</a> and
+                <a href="/static/template_kpi/Monthly-input-template.xlsx">monthly</a> templates and fill them up with your
+                data.</p>
+            <p>Here is a filled <a href="/static/template_kpi/example-kpi.xlsx">template</a> you can use as a guide.</p>
+			<p>Then upload the filled template (one at a time):</p>
+            {% load widget_tweaks %}
+			<form method="post" enctype='multipart/form-data' novalidate>
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {% if form.is_bound %}
+                            {% if field.errors %}
+                                {% render_field field class="form-control is-invalid" %}
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% render_field field class="form-control is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field field class="form-control-file" %}
+                        {% endif %}
+
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+        {% if kpi %}
+        <p>Your uploaded documents:</p>
+        <ul>
+            {% for excelfile in kpi %}
+            <li><a href={{ MEDIA_URL }}{{ excelfile.get_template.url }}>{{ excelfile.get_period_verbose }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+		</div>
+	</div>
+</main>
+{% endblock content %}

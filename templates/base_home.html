@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/static/logos/favicon.ico"/>
+    <title>Challenges Marketplace</title>
+    {% include 'snippets/css.html' %}
+    {% block styles %}{% endblock styles %}
+</head>
+<body style="background-color: #F7F7F7">
+{% include 'snippets/navbar.html' %}
+
+{% block content %}
+<div class="col-xs-offset-2 col-xs-8">
+    <h1><b>Welcome to the NEW Challenges Marketplace.</b></h1>
+    <h3>If this is your first time here please <a href="/register/">register</a>, otherwise <a href="/login/">Log in</a>.</h3>
+</div>
+
+<div class="col-xs-offset-2 col-xs-8">
+    <h4><b><u>About:</u></b></h4>
+</div>
+
+<div class="col-xs-offset-2 col-xs-8">
+    <h4>Challenges Marketplace is a financial data management platform that serves both SMEs and their
+      potential investors. Challenges Marketplace enables SMEs to gather,
+      manage, and analyze their own data, including the monthly and
+      annual financial data that investors expect to see. Additionally, the platform provides a
+      visualization dashboard for the CEO and management team to see all their key metrics in one place.
+      Harvard’s management guru Peter Drucker says:“you can’t manage what you can’t measure.” This dashboard
+      will help SME managers—who often have limited financial and data analysis processes— better understand and manage
+      their businesses. Moreover, the platform helps those SMEs who are ready for equity or debt investment
+      to show their best side to potential investors that they select. </h4>
+</div>
+
+<div class="col-xs-offset-2 col-xs-8">
+    <h4>In addition to serving the SMEs, Challenges Marketplace serves potential investors by providing them
+      with a clear and standardized view of each company’s finances and other metrics. The platform enables
+      investors to easily see SME data so that they can screen companies and
+      choose which to focus on for further due diligence. For the first time, investors have access to SME data
+      in developing countries so that they can diversify their
+      investment portfolio and invest in [socially responsible] small businesses.</h4>
+</div>
+
+<div class="col-xs-offset-2 col-xs-8">
+    <h5><u>Additions to Marketplace:</u> Over time, we expect to add additional functionality to Marketplace, such as
+      our proprietary ratings system. We will also offer consulting services to companies to help them fix
+      problems in their business and thus improve their metrics and their [diagnostic data] so they can be
+      more attractive to investors.</h5>
+</div>
+
+<div class="col-xs-offset-2 col-xs-8">
+    <h5><u>About Challenges:</u> Since 1999 we have worked in over 50 countries supporting people and enterprises
+      to work together to help their community have better access to goods, services and money.
+      By focusing on helping urban businesses to grow, we are allowing individuals, families and communities
+      up and down the supply chain to become prosperous. Prosperity isn’t just about counting wealth, it’s
+      about accessing all the benefits that wealth brings: access to safe drinking water; food security; a good
+      education; fair and equal job opportunities; decent health care and protection from the effects of
+      climate change.</h5>
+</div>
+
+<div class="col-xs-offset-2 col-xs-8">
+    <h5>If we can help developing nations to become prosperous, their people have a better chance of
+      improving their standard of living without relying on international aid and charity. That is truly
+      sustainable development!</h5>
+</div>
+{% endblock content %}
+
+{% include 'snippets/js.html' %}
+</body>
+
+</html>

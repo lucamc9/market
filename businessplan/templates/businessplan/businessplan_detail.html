@@ -1,0 +1,43 @@
+{% extends "base_white.html" %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="/static/css/businessplan_detail.css">{% endblock styles %}
+
+{% block content %}
+{% load static %}
+<main role="main" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-sm-3">
+            {% include 'snippets/side_buttons.html' %}
+		</div>
+		<div class="col-md-8 col-sm-7">
+			<h1 class="h1 title"> <b>Business Plan</b> <small><a href="{% url 'businessplan:update' slug=object.slug %}">Update</a></small></h1>
+            {% if object.plan %}
+                <p class="question">Plan document</p>
+                <p class="response"><a href="{{ MEDIA_URL }}{{ object.plan.url }}"> {{ object.plan.name }} </a></p>
+            {% endif %}
+            <p class="question">Business model</p>
+            <p class="response">{{ object.model }}</p>
+            <p class="question">Qualifications held</p>
+            <p class="response">{{ object.qualifications }}</p>
+            <p class="question">Exit strategy</p>
+            <p class="response">{{ object.exit }}</p>
+            <p class="question">Business Summary</p>
+            <p class="response">{{ object.summary }}</p>
+            <p class="question">Competitors</p>
+            <p class="response">{{ object.competitors }}</p>
+            <p class="question">Current or potential customers</p>
+            <p class="response">{{ object.customers }}</p>
+            <p class="question">Potential market size</p>
+            <p class="response">{{ object.market }}</p>
+            <p class="question">Customer problem we are trying to solve</p>
+            <p class="response">{{ object.problem }}</p>
+            <p class="question">Our solution</p>
+            <p class="response">{{ object.solution }}</p>
+            <p class="question">“Go-to-market” and sales strategy</p>
+            <p class="response">{{ object.strategy }}</p>
+            <p class="question">Competitive advantage and barriers to entry</p>
+            <p class="response">{{ object.advantages }}</p>
+		</div>
+	</div>
+</main>
+{% endblock content %}
